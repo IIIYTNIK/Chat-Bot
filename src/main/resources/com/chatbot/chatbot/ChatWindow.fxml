@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="250.0" prefWidth="290.0"
+            xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.chatbot.chatbot.ChatController">
+   <children>
+      <TextArea fx:id="chatTextArea" editable="false"
+                  AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="20.0"
+                  AnchorPane.rightAnchor="20.0" AnchorPane.bottomAnchor="70.0"/>
+      <TextField fx:id="inputTextField" promptText="Введите сообщение..."
+                  AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="100.0"
+                  AnchorPane.bottomAnchor="20.0"
+                  onAction="#handleSendMessage"/>
+      <Button fx:id="sendButton" text="Отправить"
+                  AnchorPane.rightAnchor="20.0" AnchorPane.bottomAnchor="20.0"
+                  prefWidth="80.0"
+                  onAction="#handleSendMessage"/>
+   </children>
+</AnchorPane>
