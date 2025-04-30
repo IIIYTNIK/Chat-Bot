@@ -1,5 +1,7 @@
 package com.chatbot.chatbot;
 
+import java.util.List;
+
 /**
  *  Интерфейс для чат-бота.
  * Позволяет легко заменить реализацию бота в будущем.
@@ -7,7 +9,5 @@ package com.chatbot.chatbot;
 
 public interface BotInterface {
     String respondTo(String message, String author);  // Ответ на сообщение
-    void saveHistoryToFile(String username);          // Сохранение истории в файл
-    void loadHistoryFromFile(String username);        // Загрузка истории из файла
-
+    List<Message> getHistory();
 }

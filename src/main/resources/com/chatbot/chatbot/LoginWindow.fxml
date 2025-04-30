@@ -3,14 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-            minWidth="-Infinity" prefHeight="385.0" prefWidth="277.0"
-            xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.chatbot.chatbot.LoginController">
-   <Button fx:id="LoginButton" layoutX="113.0" layoutY="286.0" mnemonicParsing="false" onAction="#onLoginButtonClick"
-           text="Войти" AnchorPane.bottomAnchor="60.0"/>
-   <Label layoutX="62.0" layoutY="217.0" text="Введите имя пользователя"
-          AnchorPane.bottomAnchor="150.0"/>
-   <TextField fx:id="login_edit" layoutX="62.0" layoutY="179.0"
-              AnchorPane.bottomAnchor="180.0"/>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="277.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatbot.chatbot.LoginController">
+   <Button fx:id="LoginButton" layoutX="113.0" layoutY="286.0" mnemonicParsing="false" onAction="#onLoginButtonClick" text="Войти" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="115.2" />
+   <Label layoutX="62.0" layoutY="217.0" text="Введите имя пользователя" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="67.80000000000001" />
+   <TextField fx:id="login_edit" layoutX="62.0" layoutY="179.0" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="65.4" />
 </AnchorPane>

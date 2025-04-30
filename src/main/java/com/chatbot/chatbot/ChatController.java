@@ -4,8 +4,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import java.util.List;
 
 public class ChatController {
+    private ChatHistory history = new ChatHistory();
+
     // Все FXML-элементы должны быть помечены аннотацией
     @FXML
     private TextField inputTextField;
@@ -24,6 +27,8 @@ public class ChatController {
 
     @FXML
     private void initialize() {
+        List<Message> loaded = history.load(username);
+        // Загружаем в бот
         // Инициализация, которая не зависит от username
         chatTextArea.setEditable(false);
     }
@@ -31,7 +36,7 @@ public class ChatController {
     // Установка имени пользователя (вызывается из LoginController)
     public void setUsername(String username) {
         this.username = username;
-        bot.loadHistoryFromFile(username);
+        //bot.loadHistoryFromFile(username);
         showWelcomeMessage();
     }
 
@@ -58,7 +63,12 @@ public class ChatController {
         chatTextArea.setScrollTop(Double.MAX_VALUE);
     }
 
-    public void saveHistory() {
-        //ToDo SaveHistory
+    public void saveChat() {
+        List<Message> messages = bot.getHistory();
+
+        if (!messages.isEmpty()) {
+            history.save(messages, username);
+        }
+
     }
 }

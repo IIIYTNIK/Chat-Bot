@@ -2,6 +2,7 @@ package com.chatbot.chatbot;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,8 +16,6 @@ public class RegularBot  implements BotInterface{
 
     @Override
     public String respondTo(String message, String author) {
-        // Сохраняем сообщение пользователя в историю
-        history.add(new Message(author, message));
 
         // Обработка команд
         if (message.equalsIgnoreCase("/help")) {
@@ -32,30 +31,29 @@ public class RegularBot  implements BotInterface{
         else if (message.matches("(?i)который час\\??")) {
             return "Сейчас " + LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"));
         }
-        else if (message.matches("(?i)умножь \\d+ на \\d+")) {
-            Pattern pattern = Pattern.compile("\\d+");
+        else if (message.matches("-?\\d+\\s*[-+*/]\\s*-?\\d+")) {
+            Pattern pattern = Pattern.compile("(-?\\d+)\\s*([-+*/])\\s*(-?\\d+)");
             Matcher matcher = pattern.matcher(message);
-            if (matcher.find()) {
-                int x = Integer.parseInt(matcher.group());
-                if (matcher.find()) {
-                    int y = Integer.parseInt(matcher.group());
-                    return String.format("%d * %d = %d", x, y, x * y);
-                }
+            matcher.matches();
+            int x = Integer.parseInt(matcher.group(1));  // Первое число (с учётом знака)
+            int y = Integer.parseInt(matcher.group(3)); // Второе число (с учётом знака)
+            String op = matcher.group(2);               // Оператор (+, -, *, /)
+
+            switch (op) {
+                case "+": return String.format("%d + %d = %d", x, y, x + y);
+                case "-": return String.format("%d - %d = %d", x, y, x - y);
+                case "*": return String.format("%d * %d = %d", x, y, x * y);
+                case "/": return y != 0 ? String.format("%d / %d = %d", x, y, x / y) : "Делить на ноль нельзя!";
             }
         }
 
         return "Не понимаю. Напишите /help для списка команд.";
     }
 
-    @Override
-    public void saveHistoryToFile(String username) {
-        // TODO: Реализовать сохранение в JSON/CSV
+    public List<Message> getHistory() {
+        return Collections.unmodifiableList(history);
     }
 
-    @Override
-    public void loadHistoryFromFile(String username) {
-        // TODO: Загрузка из файла
-    }
 }
 
 
