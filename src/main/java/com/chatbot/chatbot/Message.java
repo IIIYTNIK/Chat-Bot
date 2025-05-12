@@ -16,7 +16,7 @@ public class Message {
         this.timestamp = LocalDateTime.now();
     }
 
-    // Геттеры и toString() (используется при выводе в GUI)
+    // Геттеры и toString()
     public String getAuthor() { return author; }
     public String getText() { return text; }
     public LocalDateTime getTimestamp() { return timestamp; }

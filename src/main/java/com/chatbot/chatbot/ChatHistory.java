@@ -1,8 +1,10 @@
 package com.chatbot.chatbot;
-import java.io.IOException;
-import java.nio.file.Files;
+import java.io.*;
+import java.nio.file.*;
+import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 /**
  * Управление историей сообщений: сохранение/загрузка.
@@ -25,7 +27,20 @@ public class ChatHistory {
     }
 
 
-    public static List<Message> load(String username) {
-        return null;
+
+    public static List<Message> load(String username) throws IOException {
+        Path userFile = historyPath.resolve(username + ".json");
+
+        if (!Files.exists(userFile)) {
+            return new ArrayList<>(); // Возвращаем пустой список, если файла нет
+        }
+
+        try (Reader reader = Files.newBufferedReader(userFile)) {
+            return gson.fromJson(reader, new TypeToken<List<Message>>() {
+            }.getType());
+        } catch (IOException e) {
+            System.err.println("Ошибка загрузки истории: " + e.getMessage());
+            return new ArrayList<>();
+        }
     }
 }

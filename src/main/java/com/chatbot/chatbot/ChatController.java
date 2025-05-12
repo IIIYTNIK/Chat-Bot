@@ -1,9 +1,10 @@
 package com.chatbot.chatbot;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+
+import java.io.IOException;
 import java.util.List;
 
 public class ChatController {
@@ -14,8 +15,7 @@ public class ChatController {
     private TextField inputTextField;
     @FXML
     private TextArea chatTextArea;
-    @FXML
-    private Button sendButton;
+
 
     private BotInterface bot;
     private String username;
@@ -26,7 +26,7 @@ public class ChatController {
     }
 
     @FXML
-    private void initialize() {
+    private void initialize() throws IOException{
         List<Message> loaded = history.load(username);
         // Загружаем в бот
         // Инициализация, которая не зависит от username
@@ -64,11 +64,16 @@ public class ChatController {
     }
 
     public void saveChat() {
-        List<Message> messages = bot.getHistory();
+        try {
+            List<Message> messages = bot.getHistory();
+            if (!messages.isEmpty()) {
+                addMessageToChat("dsa");
+                history.save(messages, username);
+            }
+        } catch (IOException e) {
 
-        if (!messages.isEmpty()) {
-            history.save(messages, username);
         }
+
 
     }
 }

@@ -10,4 +10,5 @@ import java.util.List;
 public interface BotInterface {
     String respondTo(String message, String author);  // Ответ на сообщение
     List<Message> getHistory();
+    boolean is_empty();
 }

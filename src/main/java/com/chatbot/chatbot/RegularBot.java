@@ -17,6 +17,7 @@ public class RegularBot  implements BotInterface{
     @Override
     public String respondTo(String message, String author) {
 
+        history.add(new Message(author, message));
         // Обработка команд
         if (message.equalsIgnoreCase("/help")) {
             return "Доступные команды:\n" +
@@ -54,6 +55,9 @@ public class RegularBot  implements BotInterface{
         return Collections.unmodifiableList(history);
     }
 
+    public boolean is_empty(){
+        return history.isEmpty();
+    }
 }
 
 

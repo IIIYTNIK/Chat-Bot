@@ -1,8 +1,9 @@
 module com.chatbot.chatbot {
-    requires javafx.controls;
-    requires javafx.fxml;
+        requires javafx.controls;
+        requires javafx.fxml;
+        requires com.google.gson;
 
+        opens com.chatbot.chatbot to javafx.fxml, com.google.gson;
 
-    opens com.chatbot.chatbot to javafx.fxml;
-    exports com.chatbot.chatbot;
-}
+        exports com.chatbot.chatbot;
+        }
